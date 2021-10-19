@@ -17,6 +17,7 @@ layout(location=0) out vec4 outColor;
 
 void main()
 {
+    // Order Independent Transparency (OIT), see https://developer.download.nvidia.com/SDK/10/opengl/src/dual_depth_peeling/doc/DualDepthPeeling.pdf
 	vec4 Cbg = texture(opaqueTex, screenPosition);
 	float cnt = texture(counter, screenPosition).r;
     if (cnt > 0)

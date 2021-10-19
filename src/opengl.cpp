@@ -237,7 +237,7 @@ void Renderer::render(GLFWwindow* window, const ViewSettings& view, const SceneS
 	// Draw scene
 	renderScene(view, scene);
 
-	// transparency pass
+	// transparency pass (Order Independent Transparency (OIT), see https://developer.download.nvidia.com/SDK/10/opengl/src/dual_depth_peeling/doc/DualDepthPeeling.pdf)
 	glDepthMask(GL_FALSE);					// do not write new data to depth buffer
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);						// enable blending so that transparent geometry sum up
