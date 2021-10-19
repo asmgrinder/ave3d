@@ -44,6 +44,12 @@ struct LogStream : public Assimp::LogStream
 	}
 };
 
+std::string getFileNameFromPath(std::string PathStr)
+{
+	size_t pos = PathStr.find_last_of("/\\");
+	return PathStr.substr((std::string::npos == pos) ? 0 : 1 + pos);
+}
+
 Mesh::Mesh(const aiScene *ScenePtr, size_t MeshIndex)
 {
 	const aiMesh *meshPtr = ScenePtr->mMeshes[MeshIndex];
@@ -80,27 +86,27 @@ Mesh::Mesh(const aiScene *ScenePtr, size_t MeshIndex)
 	if (materialPtr->GetTextureCount(aiTextureType_DIFFUSE) > 0
 		&& AI_SUCCESS == materialPtr->GetTexture(aiTextureType_DIFFUSE, 0, &textureStr))
 	{
-		m_textures[Mesh::TextureType::Albedo] = std::string(textureStr.C_Str());
+		m_textures[Mesh::TextureType::Albedo] = getFileNameFromPath(std::string(textureStr.C_Str()));
 	}
 	if (materialPtr->GetTextureCount(aiTextureType_NORMALS) > 0
 		&& AI_SUCCESS == materialPtr->GetTexture(aiTextureType_NORMALS, 0, &textureStr))
 	{
-		m_textures[Mesh::TextureType::Normals] = std::string(textureStr.C_Str());
+		m_textures[Mesh::TextureType::Normals] = getFileNameFromPath(std::string(textureStr.C_Str()));
 	}
 	if (materialPtr->GetTextureCount(aiTextureType_METALNESS) > 0
 		&& AI_SUCCESS == materialPtr->GetTexture(aiTextureType_METALNESS, 0, &textureStr))
 	{
-		m_textures[Mesh::TextureType::Metalness] = std::string(textureStr.C_Str());
+		m_textures[Mesh::TextureType::Metalness] = getFileNameFromPath(std::string(textureStr.C_Str()));
 	}
 	else if (materialPtr->GetTextureCount(aiTextureType_SPECULAR) > 0
 		&& AI_SUCCESS == materialPtr->GetTexture(aiTextureType_SPECULAR, 0, &textureStr))
 	{
-		m_textures[Mesh::TextureType::Metalness] = std::string(textureStr.C_Str());
+		m_textures[Mesh::TextureType::Metalness] = getFileNameFromPath(std::string(textureStr.C_Str()));
 	}
 	if (materialPtr->GetTextureCount(aiTextureType_SHININESS) > 0
 		&& AI_SUCCESS == materialPtr->GetTexture(aiTextureType_SHININESS, 0, &textureStr))
 	{
-		m_textures[Mesh::TextureType::Roughness] = std::string(textureStr.C_Str());
+		m_textures[Mesh::TextureType::Roughness] = getFileNameFromPath(std::string(textureStr.C_Str()));
 	}
 
 // 	for (const auto &p : m_textures)

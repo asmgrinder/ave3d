@@ -997,7 +997,7 @@ public:
 		: MeshGeometry(MeshPtr, false)
 	{
 		mEnvironmentPtr = EnvironmentPtr;
-		auto albedoFileName = MeshPtr->textureName(Mesh::TextureType::Albedo);
+		auto albedoFileName = "textures/"+ MeshPtr->textureName(Mesh::TextureType::Albedo);
 		if (albedoFileName.empty())
 		{
 			GLubyte pix[] = { 128, 128, 128, 255 };
@@ -1008,7 +1008,7 @@ public:
 			mAlbedo = Texture{ Image::fromFile(albedoFileName, 4), GL_RGBA, GL_SRGB8_ALPHA8 };
 		}
 
-		auto normalsFileName = MeshPtr->textureName(Mesh::TextureType::Normals);
+		auto normalsFileName = "textures/"+ MeshPtr->textureName(Mesh::TextureType::Normals);
 		if (normalsFileName.empty())
 		{
 			GLubyte pix[] = { 0, 0, 255 };
@@ -1019,7 +1019,7 @@ public:
 			mNormals = Texture{ Image::fromFile(normalsFileName, 3), GL_RGB, GL_RGB8 };
 		}
 
-		auto metalnessFileName = MeshPtr->textureName(Mesh::TextureType::Metalness);
+		auto metalnessFileName = "textures/"+ MeshPtr->textureName(Mesh::TextureType::Metalness);
 		if (metalnessFileName.empty())
 		{
 			GLubyte pix[] = { 128 };
@@ -1030,7 +1030,7 @@ public:
 			mMetalness = Texture{ Image::fromFile(metalnessFileName, 1), GL_RED, GL_R8 };
 		}
 
-		auto roughnessFileName = MeshPtr->textureName(Mesh::TextureType::Roughness);
+		auto roughnessFileName = "textures/"+ MeshPtr->textureName(Mesh::TextureType::Roughness);
 		if (roughnessFileName.empty())
 		{
 			GLubyte pix[] = { 128 };
