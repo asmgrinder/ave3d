@@ -4,6 +4,30 @@ Transparency and PBR (fork of https://github.com/Nadrin/PBR, OpenGL 4.5 only)
 # Run
 To run program you only need 'data' folder.
 
+### Controls
+
+Input        | Action
+-------------|-------
+LMB drag     | Rotate camera
+RMB drag     | Rotate 3D model
+Scroll wheel | Zoom in/out
+F1-F3        | Toggle analytical lights on/off
+
+# Build
+
+git clone --recursive https://github.com/asmgrinder/ave3d.git
+
+cd ave3d/data
+
+cmake -S .. -B ../build
+
+cmake --build ../build -- -jN   # N is number of cores to use for building
+
+cp ../build/ave3d.exe .
+
+ave3d.exe
+
+CMake GUI can be used to turn off assimp and glfw install check boxes and test examples build
 
 ## Third party libraries
 
