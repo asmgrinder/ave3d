@@ -43,4 +43,5 @@ This project makes use of the following open source libraries:
 
 The following assets are bundled with the project:
 
+- Painted metal texture from https://www.cgbookcase.com/ site (distrubuted under [CC0 1.0 license](https://creativecommons.org/publicdomain/zero/1.0/))
 - HDR environment map by [Bob Groothuis](http://www.bobgroothuis.com/blog/) obtained from [HDRLabs sIBL archive](http://www.hdrlabs.com/sibl/archive.html) (distributed under [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/us/)).
