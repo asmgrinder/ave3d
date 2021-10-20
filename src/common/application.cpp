@@ -11,8 +11,8 @@
 #include <iostream>
 
 namespace {
-	const int DisplaySizeX = 1600;
-	const int DisplaySizeY = 900;
+	const int DisplaySizeX = 1280;
+	const int DisplaySizeY = 720;
 	const int DisplaySamples = 8;
 
 	const float ViewDistance = 400.0f;
