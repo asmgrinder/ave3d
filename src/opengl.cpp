@@ -44,7 +44,7 @@ GLFWwindow* Renderer::initialize(int width, int height, int maxSamples)
 	{
 		throw std::runtime_error("Failed to initialize OpenGL extensions loader");
 	}
-	
+
 // 	glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &mCapabilities.maxAnisotropy);
 
 #if _DEBUG
@@ -61,7 +61,7 @@ GLFWwindow* Renderer::initialize(int width, int height, int maxSamples)
 		mFramebuffer->AttachRenderbuffer(GL_COLOR_ATTACHMENT0, GL_RGBA16F, width, height, samples);
 		mFramebuffer->AttachRenderbuffer(GL_COLOR_ATTACHMENT1, GL_RGBA16F, width, height, samples);
 		mFramebuffer->AttachRenderbuffer(GL_COLOR_ATTACHMENT2, GL_R16F,    width, height, samples);
-		mFramebuffer->AttachRenderbuffer(GL_DEPTH_ATTACHMENT, GL_DEPTH_COMPONENT32, width, height, samples);
+		mFramebuffer->AttachRenderbuffer(GL_DEPTH_ATTACHMENT, GL_DEPTH_COMPONENT, width, height, samples);
 		mFramebuffer->DrawBuffers({ GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 });
 		auto status = mFramebuffer->CheckStatus();
 		if (status != GL_FRAMEBUFFER_COMPLETE)

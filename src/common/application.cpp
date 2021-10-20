@@ -15,7 +15,7 @@ namespace {
 	const int DisplaySizeY = 900;
 	const int DisplaySamples = 8;
 
-	const float ViewDistance = 200.0f;
+	const float ViewDistance = 400.0f;
 	const float ViewFOV      = 35.0f;
 	const float OrbitSpeed   = 1.0f;
 	const float ZoomSpeed    = 32.0f;
