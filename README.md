@@ -43,5 +43,4 @@ This project makes use of the following open source libraries:
 
 The following assets are bundled with the project:
 
-- "Cerberus" gun model by [Andrew Maximov](http://artisaverb.info).
 - HDR environment map by [Bob Groothuis](http://www.bobgroothuis.com/blog/) obtained from [HDRLabs sIBL archive](http://www.hdrlabs.com/sibl/archive.html) (distributed under [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/us/)).

@@ -140,7 +140,7 @@ std::function<void (int w, int h)> Renderer::setup()
 	mEnvPtr = std::make_shared<Environment>(Image::fromFile("environment.hdr", 3));
 
 	mSkybox   = MeshGeometry{ Mesh::fromFile("meshes/skybox.obj") };
-	mPbrModel = PbrMesh{ Mesh::fromFile("meshes/cerberus2.fbx"), mEnvPtr };
+	mPbrModel = PbrMesh{ Mesh::fromFile("meshes/siuzanna.fbx"), mEnvPtr };
 	mGlass    = PbrMesh{ Mesh::fromFile("meshes/plate.fbx"), mEnvPtr };
 
 	return [&](int w, int h) { glViewport(0, 0, w, h); };
