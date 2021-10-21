@@ -55,6 +55,11 @@ endif()
 
 add_executable(ave3d ${srcCommon} ${srcLibraries} ${srcRenderers})
 
+set(STATIC_LINKING "-static-libstdc++ -static-libgcc")
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    set(STATIC_LINKING "-static-libstdc++ -static-libgcc -static")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
 #target_compile_features(ave3d PRIVATE cxx_std_14)
 target_compile_definitions(ave3d PRIVATE GLFW_INCLUDE_NONE GLM_ENABLE_EXPERIMENTAL ${features})
 target_include_directories(ave3d PRIVATE ${includePath} ${GLFW_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS})
@@ -69,7 +74,7 @@ set (CMAKE_EXE_LINKER_FLAGS_DEBUG "-g -fsanitize=address")
 
 set (CMAKE_C_FLAGS_RELEASE "-O2")
 set (CMAKE_CXX_FLAGS_RELEASE "-O2")
-set (CMAKE_EXE_LINKER_FLAGS_RELEASE "-O2 -static-libstdc++ -static-libgcc -static")
+set (CMAKE_EXE_LINKER_FLAGS_RELEASE "-O2 ${STATIC_LINKING}")
 
 set (CMAKE_C_FLAGS_RELWITHDEBINFO "-g -O2")
 set (CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -O2")
@@ -77,6 +82,6 @@ set (CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO "-g -O2")
 
 set (CMAKE_C_FLAGS_MINSIZEREL "-Os")
 set (CMAKE_CXX_FLAGS_MINSIZEREL "-Os")
-set (CMAKE_EXE_LINKER_FLAGS_MINSIZEREL "-Os -static-libstdc++ -static-libgcc -static")
+set (CMAKE_EXE_LINKER_FLAGS_MINSIZEREL "-Os ${STATIC_LINKING}")
 
 install(TARGETS ave3d DESTINATION ${PROJECT_DATA_DIR})
