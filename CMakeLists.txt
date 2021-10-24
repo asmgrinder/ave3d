@@ -6,7 +6,7 @@ set(PROJECT_DATA_DIR ${PROJECT_SOURCE_DIR}/data)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_package(PkgConfig REQUIRED)
+#find_package(PkgConfig REQUIRED)
 find_package(OpenGL)
 
 add_subdirectory (deps)
@@ -65,8 +65,8 @@ target_compile_definitions(ave3d PRIVATE GLFW_INCLUDE_NONE GLM_ENABLE_EXPERIMENT
 target_include_directories(ave3d PRIVATE ${includePath} ${GLFW_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS})
 target_link_libraries(ave3d ${GLFW_LIBRARIES} ${ASSIMP_LIBRARIES} ${OPENGL_LIBRARIES})
 
-set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")  # -fsanitize=address
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")  #-fsanitize=address
+set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")  # -fsanitize=address -Wall -Wextra -Wold-style-cast -Wcast-qual -Wcast-align -Wcomments -Wundef -Wunused-macros -Werror=array-bounds
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")  #-fsanitize=address -Wall -Wextra -Wold-style-cast -Wcast-qual -Wcast-align -Wcomments -Wundef -Wunused-macros -Werror=array-bounds
 
 set (CMAKE_C_FLAGS_DEBUG "-g -D_DEBUG -fsanitize=address")
 set (CMAKE_CXX_FLAGS_DEBUG "-g -D_DEBUG -fsanitize=address")
@@ -84,4 +84,4 @@ set (CMAKE_C_FLAGS_MINSIZEREL "-Os")
 set (CMAKE_CXX_FLAGS_MINSIZEREL "-Os")
 set (CMAKE_EXE_LINKER_FLAGS_MINSIZEREL "-Os ${STATIC_LINKING}")
 
-install(TARGETS ave3d DESTINATION ${PROJECT_DATA_DIR})
+install(TARGETS ave3d RUNTIME DESTINATION ${PROJECT_DATA_DIR})

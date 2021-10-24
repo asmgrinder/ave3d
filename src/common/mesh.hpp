@@ -51,6 +51,4 @@ private:
 	std::vector<Face> m_faces;
 
 	std::unordered_map<TextureType, std::string> m_textures;
-// 	std::unordered_map<aiTextureType, std::string> m_textures;
-// 	std::unordered_map<aiColor3D, aiColor3D> m_colors;
 };

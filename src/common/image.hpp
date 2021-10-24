@@ -27,7 +27,7 @@ public:
 	template<typename T>
 	const T* pixels() const
 	{
-		return reinterpret_cast<const T*>(m_pixels);
+		return reinterpret_cast<const T*>(m_pixels.get());
 	}
 
 private:
@@ -37,5 +37,5 @@ private:
 	int m_height;
 	int m_channels;
 	bool m_hdr;
-	void *m_pixels;
+	std::shared_ptr<void> m_pixels;
 };

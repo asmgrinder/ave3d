@@ -4,3 +4,6 @@
 [submodule "deps/glfw"]
 	path = deps/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "deps/glatter"]
+	path = deps/glatter
+	url = https://github.com/imakris/glatter.git

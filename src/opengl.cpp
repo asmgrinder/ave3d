@@ -23,7 +23,7 @@ GLFWwindow* Renderer::initialize(int width, int height, int maxSamples)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
-#if _DEBUG
+#ifdef _DEBUG
 	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 #endif
 
@@ -40,14 +40,14 @@ GLFWwindow* Renderer::initialize(int width, int height, int maxSamples)
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(-1);
 
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
 	{
 		throw std::runtime_error("Failed to initialize OpenGL extensions loader");
 	}
 
 // 	glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &mCapabilities.maxAnisotropy);
 
-#if _DEBUG
+#ifdef _DEBUG
 	glDebugMessageCallback(Renderer::logMessage, nullptr);
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 #endif
@@ -101,7 +101,6 @@ void Renderer::shutdown()
 	mShadingUB.Release();
 	mBaseInfoUB.Release();
 
-
 	mSkybox.Release();
 	mPbrModel.Release();
 	mGlass.Release();
@@ -146,7 +145,7 @@ std::function<void (int w, int h)> Renderer::setup()
 	return [&](int w, int h) { glViewport(0, 0, w, h); };
 }
 
-void Renderer::renderScene(const ViewSettings& view, const SceneSettings& scene)
+void Renderer::renderScene(const ViewSettings& /*view*/, const SceneSettings& scene)
 {
 	// update uniforms
 	auto &transformUniforms = mTransformUB.GetReference();
@@ -282,7 +281,7 @@ void Renderer::render(GLFWwindow* window, const ViewSettings& view, const SceneS
 	glfwSwapBuffers(window);
 }
 
-#if _DEBUG
+#ifdef _DEBUG
 void Renderer::logMessage(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
 {
 	const std::unordered_map<GLenum, std::string> errorType =

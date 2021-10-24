@@ -100,7 +100,7 @@ void Application::mousePositionCallback(GLFWwindow* window, double xpos, double 
 	}
 }
 	
-void Application::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+void Application::mouseButtonCallback(GLFWwindow* window, int button, int action, int /*mods*/)
 {
 	Application* self = reinterpret_cast<Application*>(glfwGetWindowUserPointer(window));
 
@@ -138,13 +138,13 @@ void Application::mouseButtonCallback(GLFWwindow* window, int button, int action
 	}
 }
 	
-void Application::mouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+void Application::mouseScrollCallback(GLFWwindow* window, double /*xoffset*/, double yoffset)
 {
 	Application* self = reinterpret_cast<Application*>(glfwGetWindowUserPointer(window));
 	self->m_viewSettings.distance += ZoomSpeed * float(-yoffset);
 }
 	
-void Application::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void Application::keyCallback(GLFWwindow* window, int key, int /*scancode*/, int action, int /*mods*/)
 {
 	Application* self = reinterpret_cast<Application*>(glfwGetWindowUserPointer(window));
 

@@ -112,7 +112,7 @@ public:
 			file.close();
 			return stream.str();
 		}
-		catch (std::ifstream::failure e)
+		catch (std::ifstream::failure &e)
 		{
 			std::cout << "ERROR: getShaderFileContents: read failed (" << e.what() << ")" << std::endl;
 		}
@@ -1085,7 +1085,7 @@ public:
 protected:
 	void renderScene(const ViewSettings& view, const SceneSettings& scene);
 
-#if _DEBUG
+#ifdef _DEBUG
 	static void logMessage(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
 #endif
 

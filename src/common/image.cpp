@@ -14,11 +14,11 @@ Image::Image()
 	, m_height(0)
 	, m_channels(0)
 	, m_hdr(false)
-{}
+{
+}
 
 Image::~Image()
 {
-	stbi_image_free(m_pixels);
 }
 
 
@@ -30,7 +30,9 @@ std::shared_ptr<Image> Image::fromFile(const std::string& filename, int channels
 
 	if (stbi_is_hdr(filename.c_str()))
 	{
-		void* pixels = stbi_loadf(filename.c_str(), &image->m_width, &image->m_height, &image->m_channels, channels);
+		std::shared_ptr<void> pixels = 
+			std::shared_ptr<void>(stbi_loadf(filename.c_str(), &image->m_width, &image->m_height, &image->m_channels, channels),
+				[](void *Ptr) { if (nullptr != Ptr) { stbi_image_free(Ptr); } });
 		if (pixels)
 		{
 			image->m_pixels = pixels;
@@ -39,7 +41,9 @@ std::shared_ptr<Image> Image::fromFile(const std::string& filename, int channels
 	}
 	else
 	{
-		unsigned char* pixels = stbi_load(filename.c_str(), &image->m_width, &image->m_height, &image->m_channels, channels);
+		std::shared_ptr<void> pixels = 
+			std::shared_ptr<void>(stbi_load(filename.c_str(), &image->m_width, &image->m_height, &image->m_channels, channels),
+				[](void *Ptr) { if (nullptr != Ptr) { stbi_image_free(Ptr); } });
 		if (pixels)
 		{
 			image->m_pixels = pixels;
